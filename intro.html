@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IT-Pathfinder Intro</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      width:100%;
+      height:100vh;
+      overflow:hidden;
+      background: radial-gradient(circle at center, #0d1b2a, #000814);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .container{
+      position:relative;
+      text-align:center;
+    }
+
+    /* LOGO */
+    .logo{
+      width:420px;
+      opacity:0;
+      transform:scale(0.6);
+      animation: logoShow 1.5s ease forwards;
+      filter: drop-shadow(0 0 20px #00bfff);
+    }
+
+    /* CAHAYA BERGERAK */
+    .light-sweep{
+      position:absolute;
+      top:0;
+      left:-150%;
+      width:120px;
+      height:100%;
+      background:rgba(255,255,255,0.25);
+      transform:skewX(-20deg);
+      animation: sweep 3s infinite;
+    }
+
+    /* TEKS */
+    .text{
+      margin-top:20px;
+      font-size:42px;
+      font-weight:bold;
+      color:#5ecbff;
+      letter-spacing:2px;
+      opacity:0;
+      animation: textShow 1s ease forwards;
+      animation-delay:1s;
+      text-shadow:
+        0 0 10px #00bfff,
+        0 0 20px #00bfff,
+        0 0 40px #00bfff;
+    }
+
+    /* TITIK BINTANG */
+    .star{
+      position:absolute;
+      top:40px;
+      right:-10px;
+      width:12px;
+      height:12px;
+      background:white;
+      border-radius:50%;
+      box-shadow:
+        0 0 10px white,
+        0 0 20px #00bfff,
+        0 0 40px #00bfff;
+      animation: blink 1s infinite alternate;
+    }
+
+    /* GARIS NEON */
+    .line {
+  position: absolute;
+  left: 50%;
+  /* Menggunakan top dengan nilai persentase agar tetap dekat di bawah logo */
+  top: 70%; 
+  transform: translateX(-50%);
+
+  width: 260px;
+  height: 4px;
+  border-radius: 20px;
+
+  /* Gradasi Kuning sesuai warna logo baru */
+  background: linear-gradient(
+    to right,
+    transparent,
+    #ffcc00, 
+    transparent
+  );
+
+  /* Glow warna emas/kuning */
+  box-shadow:
+    0 0 10px #ffcc00,
+    0 0 20px #e6ac00;
+
+  overflow: hidden;
+}
+
+/* EFEK PANCAR DARI TENGAH */
+.line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%; /* Mulai dari titik tengah */
+  width: 0%;
+  height: 100%;
+  transform: translateX(-50%);
+
+  /* Warna cahaya putih kekuningan saat memancar */
+  background: #fff3b0; 
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 0 10px #fff3b0,
+    0 0 20px #ffcc00,
+    0 0 50px #ffcc00;
+
+  /* Animasi tetap menggunakan pulseLine agar memancar ke kiri-kanan */
+  animation: pulseLine 2s infinite;
+}
+/* ANIMASI MEMANCAR */
+@keyframes pulseLine{
+
+  0%{
+    width:0%;
+    opacity:0;
+  }
+
+  30%{
+    opacity:1;
+  }
+
+  100%{
+    width:100%;
+    opacity:0;
+  }
+}
+
+
+    /* PARTICLES */
+    .particle{
+      position:absolute;
+      width:4px;
+      height:4px;
+      background:#5ecbff;
+      border-radius:50%;
+      opacity:0.8;
+      animation: float 4s linear infinite;
+    }
+
+    /* ANIMATIONS */
+
+    @keyframes logoShow{
+      to{
+        opacity:1;
+        transform:scale(1);
+      }
+    }
+
+    @keyframes textShow{
+      to{
+        opacity:1;
+      }
+    }
+
+    @keyframes sweep{
+      0%{
+        left:-150%;
+      }
+      100%{
+        left:180%;
+      }
+    }
+
+    @keyframes blink{
+      from{
+        transform:scale(1);
+        opacity:0.7;
+      }
+      to{
+        transform:scale(1.8);
+        opacity:1;
+      }
+    }
+
+    @keyframes lineMove{
+      to{
+        width:420px;
+      }
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(0px);
+        opacity:0;
+      }
+
+      50%{
+        opacity:1;
+      }
+
+      100%{
+        transform:translateY(-300px);
+        opacity:0;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+  <div style="position:relative; display:inline-block;">
+    <img src="logo-itpathfinder2.png" class="logo">
+
+    <div class="light-sweep"></div>
+    <div class="star"></div>
+  </div>
+
+  <div class="line"></div>
+
+</div>
+
+  <!-- PARTICLE EFFECT -->
+  <script>
+
+    for(let i=0; i<40; i++){
+
+      let particle = document.createElement("div");
+      particle.classList.add("particle");
+
+      particle.style.left = Math.random() * window.innerWidth + "px";
+      particle.style.top = Math.random() * window.innerHeight + "px";
+
+      particle.style.animationDuration =
+        (Math.random() * 3 + 2) + "s";
+
+      particle.style.opacity = Math.random();
+
+      document.body.appendChild(particle);
+    }
+
+  </script>
+
+</body>
+</html>

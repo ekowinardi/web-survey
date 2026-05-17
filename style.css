@@ -1,0 +1,124 @@
+/* --- KODE CSS UTAMA (Untuk Desktop/Layar Lebar) --- */
+:root {
+        /* Warna gradasi modern */
+        --gradient-sidebar: linear-gradient(180deg, #1e293b 0%, #334155 100%);
+        --primary-accent: #3b82f6;
+        --glass-bg: rgba(255, 255, 255, 0.1);
+    }
+    body { 
+        background-color: #f1f5f9; 
+        font-family: 'Inter', sans-serif; 
+    }
+
+    .sidebar { 
+    min-height: 100vh; 
+    width: 16.666667%; /* Ini setara dengan col-md-2 Bootstrap */
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%) !important; 
+    color: white; 
+    padding-top: 20px; 
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    position: fixed; 
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* Tambahkan ini agar konten utama tidak tertutup sidebar yang di-fixed */
+main {
+    margin-left: 16.666667%; /* Beri jarak sesuai lebar sidebar */
+}
+
+/* Responsif: Jika layar kecil (HP), sidebar tidak fixed */
+@media (max-width: 768px) {
+    .sidebar { position: relative; width: 100%; min-height: auto; }
+    main { margin-left: 0; }
+}
+
+    .nav-link { 
+        color: rgba(255,255,255,0.7) !important; 
+        margin: 5px 15px; 
+        padding: 10px 15px;
+        display: flex; 
+        align-items: center; 
+        transition: all 0.3s ease;
+    }
+
+    .nav-link i { margin-right: 12px; width: 18px; }
+
+    .nav-link.active { 
+        color: white !important; 
+        background: var(--glass-bg); 
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(4px);
+    }
+
+    .nav-link:hover { 
+        color: white !important; 
+        background: rgba(255,255,255,0.05);
+        border-radius: 12px;
+    }
+    
+    /* Tambahan efek pada header profil sekolah */
+    .school-badge {
+        background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
+        border: none;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    }
+
+.login-card {
+    padding: 50px 40px;
+    border-radius: 24px;
+   
+}
+
+/* --- KODE RESPONSIVITAS (Untuk HP) --- */
+/* Letakkan ini di bagian paling bawah file style.css */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 15px;
+    }
+
+    .login-card {
+        padding: 35px 25px;
+        border-radius: 20px;
+    }
+
+    .input-group {
+        flex-direction: column; /* Mengubah label ke atas, input ke bawah */
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .input-group label {
+        flex: none;
+        width: 100%;
+    }
+
+    #password-message {
+        margin-left: 0; /* Meratakan pesan error ke kiri pada layar HP */
+    }
+
+    /* Membuat jarak antar kartu menu lebih pas */
+    .row.g-4 {
+        --bs-gutter-y: 1.5rem; 
+    }
+
+    /* Mengurangi ukuran padding container utama agar konten tidak terlalu sempit ke tengah */
+    .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    /* Mengoptimalkan kartu agar teks tidak penuh */
+    .card-menu p {
+        font-size: 0.9rem; /* Mengecilkan sedikit teks deskripsi */
+        line-height: 1.4;
+    }
+
+    /* Membuat tombol lebih besar (Finger-friendly) */
+    .btn-start {
+        padding: 12px; 
+        font-size: 1rem;
+    }
+}
